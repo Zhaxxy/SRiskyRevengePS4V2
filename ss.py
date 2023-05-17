@@ -82,6 +82,8 @@ MAGIC_SEALS_COUNT = PackedData(0x286-0x27c,2,7,2,int)
 GOLDEN_SQUID_BABY_COUNT = PackedData(0x286-0x27c,2,9,2,int)
 MAGIC_JAMS_COUNT = PackedData(0x286-0x27c,2,11,5,int)
 
+MAGIC_MODE = StructuredData(0x38c-0x27c,80,0,1,bool)
+
 class SAVE_DATA_INFO_READ_ONLY:
     GLOBAL_ENDIAN = 'little'
     SAVE_FILES_SLOTS = (1,2,3)
