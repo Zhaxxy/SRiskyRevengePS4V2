@@ -327,14 +327,17 @@ class _KeyItemsInventory:
 
 class _File():
     def _read_int_data(self, the_structure: so.StructuredData) -> int:
+    
         new_offset = (so.MAINSAVEOFFSET + the_structure.struct_offset) + (the_structure.struct_length * (self._savenumber-1)) + the_structure.data_offset
 
         if the_structure.data_length == 1:
-            return ord(self._savedata.rs(new_offset,the_structure.data_length))
+            return the_structure[-1](ord(self._savedata.rs(new_offset,the_structure.data_length)))
 
         bytes_data = self._savedata.rs(new_offset,the_structure.data_length)
-
-        return struct.unpack(so.FORMAT_STRS[the_structure.data_length],bytes_data)[0]
+        
+        
+        
+        return the_structure[-1](struct.unpack(so.FORMAT_STRS[the_structure.data_length],bytes_data)[0])
 
     def _write_int_data(self, the_structure: so.StructuredData, value: int) -> int:
         new_offset = (so.MAINSAVEOFFSET + the_structure.struct_offset) + (the_structure.struct_length * (self._savenumber-1)) + the_structure.data_offset
@@ -433,6 +436,15 @@ class _File():
     @current_x_coord.setter
     def current_x_coord(self, value: int):
         self._write_int_data(so.CURRENT_X_COORD,value)
+
+
+    @property
+    def in_magic_mode(self) -> bool:
+        return self._read_int_data(so.MAGIC_MODE)
+    @in_magic_mode.setter
+    def in_magic_mode(self, value: bool):
+        self._write_int_data(so.MAGIC_MODE,value)
+
 
     def file_select_show(self) -> str:
         if not self.is_used or not self.save_file_time_frames:
