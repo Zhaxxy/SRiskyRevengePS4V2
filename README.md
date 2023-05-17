@@ -2,6 +2,7 @@
 rewrite of my save editor class for risky revenge
 
 # TODO
+- [ ] add non file spefic data <br />
 - [ ] add code docemnation <br />
 - [ ] fix readme (like the other one) and come up with better names<br />
 - [ ] making this an installable pip package<br />
