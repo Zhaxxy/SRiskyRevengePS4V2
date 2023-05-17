@@ -446,6 +446,63 @@ class _File():
         self._write_int_data(so.MAGIC_MODE,value)
 
 
+    @property
+    def warp_squid_lilac_fields_awake(self) -> bool:
+        return self._read_int_data(so.WARP_SQUID_LILAC_FIELDS)
+    @warp_squid_lilac_fields_awake.setter
+    def warp_squid_lilac_fields_awake(self, value: bool):
+        self._write_int_data(so.WARP_SQUID_LILAC_FIELDS,value)
+
+    @property
+    def warp_squid_tangle_forest_awake(self) -> bool:
+        return self._read_int_data(so.WARP_SQUID_TANGLE_FORST)
+    @warp_squid_tangle_forest_awake.setter
+    def warp_squid_tangle_forest_awake(self, value: bool):
+        self._write_int_data(so.WARP_SQUID_TANGLE_FORST, value)
+
+    @property
+    def warp_squid_seaside_retreat_awake(self) -> bool:
+        return self._read_int_data(so.WARP_SQUID_SEASIDE_RETREAT)
+    @warp_squid_seaside_retreat_awake.setter
+    def warp_squid_seaside_retreat_awake(self, value: bool):
+        self._write_int_data(so.WARP_SQUID_SEASIDE_RETREAT, value)
+
+    @property
+    def warp_squid_mermaid_cliffs_awake(self) -> bool:
+        return self._read_int_data(so.WARP_SQUID_MERMAID_CLIFFS)
+    @warp_squid_mermaid_cliffs_awake.setter
+    def warp_squid_mermaid_cliffs_awake(self, value: bool):
+        self._write_int_data(so.WARP_SQUID_MERMAID_CLIFFS, value)
+
+    @property
+    def warp_squid_pumpkin_patch_awake(self) -> bool:
+        return self._read_int_data(so.WARP_SQUID_PUMPKIN_PATCH)
+    @warp_squid_pumpkin_patch_awake.setter
+    def warp_squid_pumpkin_patch_awake(self, value: bool):
+        self._write_int_data(so.WARP_SQUID_PUMPKIN_PATCH, value)
+
+    @property
+    def warp_squid_baron_desert_awake(self) -> bool:
+        return self._read_int_data(so.WARP_SQUID_BARON_DESERT)
+    @warp_squid_baron_desert_awake.setter
+    def warp_squid_baron_desert_awake(self, value: bool):
+        self._write_int_data(so.WARP_SQUID_BARON_DESERT, value)
+
+    @property
+    def warp_squid_sunken_caverns_awake(self) -> bool:
+        return self._read_int_data(so.WARP_SQUID_SUNKEN_CAVERNS)
+    @warp_squid_sunken_caverns_awake.setter
+    def warp_squid_sunken_caverns_awake(self, value: bool):
+        self._write_int_data(so.WARP_SQUID_SUNKEN_CAVERNS, value)
+
+    @property
+    def warp_squid_riskys_lair_awake(self) -> bool:
+        return self._read_int_data(so.WARP_SQUID_RISKYS_LAIR)
+    @warp_squid_riskys_lair_awake.setter
+    def warp_squid_riskys_lair_awake(self, value: bool):
+        self._write_int_data(so.WARP_SQUID_RISKYS_LAIR, value)
+
+
     def file_select_show(self) -> str:
         if not self.is_used or not self.save_file_time_frames:
             return 'NEW'

@@ -84,6 +84,30 @@ MAGIC_JAMS_COUNT = PackedData(0x286-0x27c,2,11,5,int)
 
 MAGIC_MODE = StructuredData(0x38c-0x27c,80,0,1,bool)
 
+WARP_SQUID_LILAC_FIELDS = StructuredData(0x473-0x27C,8,0,1,bool)
+WARP_SQUID_TANGLE_FORST = StructuredData(0x473-0x27C,8,1,1,bool)
+WARP_SQUID_SEASIDE_RETREAT = StructuredData(0x473-0x27C,8,2,1,bool)
+WARP_SQUID_MERMAID_CLIFFS = StructuredData(0x473-0x27C,8,3,1,bool)
+WARP_SQUID_PUMPKIN_PATCH = StructuredData(0x473-0x27C,8,4,1,bool)
+WARP_SQUID_BARON_DESERT = StructuredData(0x473-0x27C,8,5,1,bool)
+WARP_SQUID_SUNKEN_CAVERNS = StructuredData(0x473-0x27C,8,6,1,bool)
+WARP_SQUID_RISKYS_LAIR = StructuredData(0x473-0x27C,8,7,1,bool)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 temp_MAGIC_MODE_ENABLED = 0x620,1,bool
 
 class SAVE_DATA_INFO_READ_ONLY:
