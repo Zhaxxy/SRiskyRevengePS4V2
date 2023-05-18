@@ -33,6 +33,8 @@ CURRENT_MAGIC = StructuredData(0x35B-0x27c,1,0,1,int)
 
 CURRENT_Y_COORD = StructuredData(0x328-0x27c,16,12,4,int)
 CURRENT_X_COORD = StructuredData(0x328-0x27c,16,8,4,int)
+LOADED_AREA_BYTE = StructuredData(0x328-0x27c,16,5,1,bytes)
+CURRENT_LAYER = StructuredData(0x328-0x27c,16,2,1,int)
 
 HAS_MAP = PackedData(0x290 - 0x27C, 8, 60, 1, bool)
 HAS_FIREBALL = PackedData(0x290 - 0x27C, 8, 59, 1, bool)
