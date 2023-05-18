@@ -6,7 +6,7 @@ rewrite of my save editor class for risky revenge
 - [ ] add code docemnation <br />
 - [ ] fix readme (like the other one) and come up with better names<br />
 - [ ] making this an installable pip package<br />
-- [ ] figure out the 8 bytes after the coords (current loaded area and layer) <br />
+- [x] figure out the layer and current loaded area <br />
 - [ ] finding out places to put player in (which would be x coordinate, y coordinate, loaded area and layer)
 - [x] figure out unlocking warp squids <br />
 - [x] figure out making a file magic mode <br />
