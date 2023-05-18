@@ -6,11 +6,11 @@ from io import BytesIO
 
 #temp fix
 try: import ss as so
-except ModuleNotFoundError: import classs.ss as so
+except ModuleNotFoundError: import shan_v2.ss as so
 try: from bit_packing_tools import get_bits, set_bits
-except ModuleNotFoundError: from classs.bit_packing_tools import get_bits, set_bits
+except ModuleNotFoundError: from shan_v2.bit_packing_tools import get_bits, set_bits
 try: import areas_to_tp_to as aoiso
-except ModuleNotFoundError: import classs.areas_to_tp_to as aoiso
+except ModuleNotFoundError: import shan_v2.areas_to_tp_to as aoiso
 
 def jhash_mix(a, b, c):
     '''mix() -- mix 3 32-bit values reversibly.
@@ -441,6 +441,20 @@ class _File():
     def current_x_coord(self, value: int):
         self._write_int_data(so.CURRENT_X_COORD,value)
 
+    @property
+    def area_id(self) -> int:
+        return self._read_int_data(so.LOADED_AREA_ID)
+    @area_id.setter
+    def area_id(self, value: int):
+        self._write_int_data(so.LOADED_AREA_ID,value)
+
+    @property
+    def layer(self) -> int:
+        return self._read_int_data(so.CURRENT_LAYER)
+    @layer.setter
+    def layer(self, value: int):
+        self._write_int_data(so.CURRENT_LAYER,value)
+
 
     @property
     def in_magic_mode(self) -> bool:
@@ -514,10 +528,11 @@ class _File():
             return format_ingame_time(self.save_file_time_frames)
     
     def load_area_from_player_state(self, player_state: aoiso.CoordsLayerAndArea):
-        self._write_int_data(so.CURRENT_X_COORD, player_state.x_coord)
-        self._write_int_data(so.CURRENT_Y_COORD, player_state.y_coord)
-        self._write_int_data(so.LOADED_AREA_ID, player_state.area_id)
-        self._write_int_data(so.CURRENT_LAYER, player_state.current_layer)
+        self.current_x_coord = player_state.x_coord
+        self.current_y_coord = player_state.y_coord
+        
+        self.area_id = player_state.area_id
+        self.layer = player_state.current_layer
  
     def mark_save_as_used(self):
         self.is_used = True
