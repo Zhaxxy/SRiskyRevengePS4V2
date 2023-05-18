@@ -12,7 +12,6 @@ def get_bits(packed_bits: int, packed_bits_length: int, bits_offset: int, bits_l
 
 
 def set_bits(packed_bits: int, packed_bits_length: int, bits_offset: int, bits_length: int, value: int) -> int:
-    print(value)
     if not(packed_bits >= 0 and packed_bits_length >= 0 and bits_offset >= 0 and bits_length >= 0 and value >= 0): raise ValueError('No neagtive values allowed')
     
     
