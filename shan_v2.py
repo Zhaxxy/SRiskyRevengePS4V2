@@ -132,9 +132,6 @@ class BytesIORS(BytesIO):
                  self.seek(0)
 
 
-class CoordsAreaAndLayer:
-    def __init__(): pass
-
 
 class _InventoryItem:
     
