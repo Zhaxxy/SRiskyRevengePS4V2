@@ -17,6 +17,10 @@ FORMAT_STRS = {
 }
 
 
+
+
+
+
 GEMS = PackedData(0,2,6,10,int)
 ALWAYS_RUNNING = PackedData(0,2,2,1,bool)
 IS_USED = PackedData(0,2,1,1,bool)

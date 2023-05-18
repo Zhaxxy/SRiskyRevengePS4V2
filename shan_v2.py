@@ -9,7 +9,8 @@ try: import ss as so
 except ModuleNotFoundError: import classs.ss as so
 try: from bit_packing_tools import get_bits, set_bits
 except ModuleNotFoundError: from classs.bit_packing_tools import get_bits, set_bits
-
+try: import areas_to_tp_to as aoiso
+except ModuleNotFoundError: import classs.areas_to_tp_to as aoiso
 
 def jhash_mix(a, b, c):
     '''mix() -- mix 3 32-bit values reversibly.
@@ -130,6 +131,9 @@ class BytesIORS(BytesIO):
             else:
                  self.seek(0)
 
+
+class CoordsAreaAndLayer:
+    def __init__(): pass
 
 
 class _InventoryItem:
@@ -501,15 +505,21 @@ class _File():
     @warp_squid_riskys_lair_awake.setter
     def warp_squid_riskys_lair_awake(self, value: bool):
         self._write_int_data(so.WARP_SQUID_RISKYS_LAIR, value)
-
-
+    
+    
     def file_select_show(self) -> str:
         if not self.is_used or not self.save_file_time_frames:
             return 'NEW'
         else:
             return format_ingame_time(self.save_file_time_frames)
-
-
+    
+    def load_area_from_player_state(self, player_state: aoiso.CoordsLayerAndArea):
+        self._write_int_data(so.CURRENT_X_COORD, player_state.x_coord)
+        self._write_int_data(so.CURRENT_Y_COORD, player_state.y_coord)
+        self._write_int_data(so.LOADED_AREA_ID, player_state.area_id)
+        self._write_int_data(so.CURRENT_LAYER, player_state.current_layer)
+        
+        
 def format_ingame_time(time_as_int: int) -> str:
     """
     format the number of frames into the format the game uses (on the File Select! menu)
