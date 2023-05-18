@@ -518,7 +518,10 @@ class _File():
         self._write_int_data(so.CURRENT_Y_COORD, player_state.y_coord)
         self._write_int_data(so.LOADED_AREA_ID, player_state.area_id)
         self._write_int_data(so.CURRENT_LAYER, player_state.current_layer)
-        
+ 
+    def mark_save_as_used(self):
+        self.is_used = True
+        if save.save_file_time_frames == 0: save.save_file_time_frames = 1
         
 def format_ingame_time(time_as_int: int) -> str:
     """
