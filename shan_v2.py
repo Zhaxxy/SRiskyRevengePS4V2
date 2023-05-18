@@ -521,7 +521,7 @@ class _File():
  
     def mark_save_as_used(self):
         self.is_used = True
-        if save.save_file_time_frames == 0: save.save_file_time_frames = 1
+        if self.save_file_time_frames == 0: self.save_file_time_frames = 1
         
 def format_ingame_time(time_as_int: int) -> str:
     """
