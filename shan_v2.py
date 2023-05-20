@@ -396,6 +396,7 @@ class _File():
     def always_running(self,value: int):
         self._write_packed_int(so.ALWAYS_RUNNING,value)
 
+        
     @property
     def save_file_time_frames(self) -> int:
         return self._read_int_data(so.SAVE_FILE_TIME)
@@ -403,11 +404,7 @@ class _File():
     def save_file_time_frames(self, value: int):
         self._write_int_data(so.SAVE_FILE_TIME,value)
 
-    @property
-    def time_wasted(self) -> str:
-        pass
     
-
     @property
     def current_health(self) -> int:
         return self._read_int_data(so.CURRENT_HEALTH)
