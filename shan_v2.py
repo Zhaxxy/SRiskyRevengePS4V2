@@ -554,7 +554,7 @@ class InvalidRiskyRevengeSavePS4(Exception): pass
 class InvalidRiskyRevengeHashPS4(InvalidRiskyRevengeSavePS4): pass
 
 class SaveInterface:
-    def __init__(self, savedata_sav_bytes: bytes,*,hash_check: bool = False):
+    def __init__(self, savedata_sav_bytes: bytes,/,*,hash_check: bool = False):
         if len(savedata_sav_bytes) != 2048:
             raise InvalidRiskyRevengeSavePS4('Savedata is not exactly 2048 bytes, so its not a save')
         
