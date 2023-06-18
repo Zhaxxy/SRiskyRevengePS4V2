@@ -580,7 +580,9 @@ class SaveInterface:
             self._savedata.ws(so.MAINSAVEOFFSET-4,new_hash)
         
         return self._savedata.getvalue()
-
+    
+    def __repr__(self):
+        return f'{type(self).__name__}({self._savedata.getvalue()}, hash_check = {self.hash_check})'
 
 
 def main():
