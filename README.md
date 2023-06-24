@@ -1,4 +1,4 @@
-# shan_v2
+# SRiskyRevengePS4V2
 rewrite of my save editor class for risky revenge
 
 # TODO
