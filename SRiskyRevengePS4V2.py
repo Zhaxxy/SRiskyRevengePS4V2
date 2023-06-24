@@ -6,11 +6,11 @@ from io import BytesIO
 
 #temp fix
 try: import ss as so
-except ModuleNotFoundError: import shan_v2.ss as so
+except ModuleNotFoundError: import SRiskyRevengePS4V2.ss as so
 try: from bit_packing_tools import get_bits, set_bits
-except ModuleNotFoundError: from shan_v2.bit_packing_tools import get_bits, set_bits
+except ModuleNotFoundError: from SRiskyRevengePS4V2.bit_packing_tools import get_bits, set_bits
 try: import areas_to_tp_to as aoiso
-except ModuleNotFoundError: import shan_v2.areas_to_tp_to as aoiso
+except ModuleNotFoundError: import SRiskyRevengePS4V2.areas_to_tp_to as aoiso
 
 def jhash_mix(a, b, c):
     '''mix() -- mix 3 32-bit values reversibly.
@@ -553,7 +553,7 @@ def time2ingame_time(formated_ingame_time: str,must_be_in_use=True) -> int:
 class InvalidRiskyRevengeSavePS4(Exception): pass
 class InvalidRiskyRevengeHashPS4(InvalidRiskyRevengeSavePS4): pass
 
-class SaveInterface:
+class SRiskyRevengePS4V2Loader:
     def __init__(self, savedata_sav_bytes: bytes,/,*,hash_check: bool = False):
         if len(savedata_sav_bytes) != 2048:
             raise InvalidRiskyRevengeSavePS4('Savedata is not exactly 2048 bytes, so its not a save')
@@ -586,7 +586,7 @@ class SaveInterface:
 
 
 def main():
-    save = SaveInterface(open('savedata.sav','rb').read())
+    save = SRiskyRevengePS4V2Loader(open('savedata.sav','rb').read())
     save.File_A.use_items_inventory.mega_pike_ball = 4
 
 
