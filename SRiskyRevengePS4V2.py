@@ -548,7 +548,7 @@ def time2ingame_time(formated_ingame_time: str,must_be_in_use=True) -> int:
     """
     hours, minutes = formated_ingame_time.split(':')
     total_minutes = (int(hours) * 60) + int(minutes)
-    return min((total_minutes * 60)*60,1) if must_be_in_use else (total_minutes * 60)*60
+    return max((total_minutes * 60)*60,1) if must_be_in_use else (total_minutes * 60)*60
 
 class InvalidRiskyRevengeSavePS4(Exception): pass
 class InvalidRiskyRevengeHashPS4(InvalidRiskyRevengeSavePS4): pass
