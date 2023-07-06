@@ -1,16 +1,19 @@
 import struct
 from io import BytesIO
+from typing import NamedTuple
 
-
-
+class CoordsLayerAndArea(NamedTuple):
+    x_coord: int
+    y_coord: int
+    area_id: int
+    current_layer: int
 
 #temp fix
 try: import ss as so
 except ModuleNotFoundError: import SRiskyRevengePS4V2.ss as so
 try: from bit_packing_tools import get_bits, set_bits
 except ModuleNotFoundError: from SRiskyRevengePS4V2.bit_packing_tools import get_bits, set_bits
-try: import areas_to_tp_to as aoiso
-except ModuleNotFoundError: import SRiskyRevengePS4V2.areas_to_tp_to as aoiso
+
 
 def jhash_mix(a, b, c):
     '''mix() -- mix 3 32-bit values reversibly.
@@ -521,7 +524,7 @@ class _File():
         else:
             return format_ingame_time(self.save_file_time_frames)
     
-    def load_area_from_player_state(self, player_state: aoiso.CoordsLayerAndArea):
+    def load_area_from_player_state(self, player_state: CoordsLayerAndArea):
         self.current_x_coord = player_state.x_coord
         self.current_y_coord = player_state.y_coord
         
@@ -583,6 +586,15 @@ class SRiskyRevengePS4V2Loader:
     
     def __repr__(self):
         return f'{type(self).__name__}({self._savedata.getvalue()}, hash_check = {self.hash_check})'
+
+
+FIRST_BOSS = CoordsLayerAndArea(2367487, 2949119, 213, 0)
+FINAL_CHECKPOINT = CoordsLayerAndArea(21381120, 18415615, 188, 2)
+RISKY_SHIP_PRE_FINAL_BOSS = CoordsLayerAndArea(1867776, 3145727, 190, 0)
+FINAL_BOSS = CoordsLayerAndArea(2277376, 2031615, 191, 0)
+
+FINAL_BOSS_BEATEN = CoordsLayerAndArea(1474560, 3145727, 192, 0)
+FINAL_CUTSCENE = CoordsLayerAndArea(3342336, 18677759, 215, 1)
 
 
 def main():
