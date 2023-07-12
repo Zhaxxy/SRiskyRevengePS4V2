@@ -1,6 +1,6 @@
 import struct
 from io import BytesIO
-from typing import NamedTuple
+from typing import Any, NamedTuple
 
 class CoordsLayerAndArea(NamedTuple):
     x_coord: int
@@ -133,22 +133,28 @@ class BytesIORS(BytesIO):
                  self.seek(return_seek)
             else:
                  self.seek(0)
-
-
+        
 
 class _InventoryItem:
-    
-
+    _has_been_initialised = False
+    def __setattr__(self, name: str, value: Any) -> None:
+        if not hasattr(self,name) and self._has_been_initialised:
+            raise AttributeError(f"Attribute '{name}' does not exist")
+        else:
+            super().__setattr__(name, value)
     
     def __init__(self,self2,boolean_flags: tuple,count_flags: tuple=False):
+        
         self._savedata = self2._savedata
         self._read_packed_int = self2._read_packed_int
         self._write_packed_int = self2._write_packed_int
 
-
         self.boolean_flags = boolean_flags
         self.count_flags = count_flags
-    
+
+        self._has_been_initialised = True
+
+
     @property
     def exists(self) -> bool:
         trues = [self._read_packed_int(boolean_flag) for boolean_flag in self.boolean_flags]
@@ -162,19 +168,26 @@ class _InventoryItem:
     
     @property
     def count(self) -> int:
-        if not self.count_flags: raise AttributeError('no attruibte for count')
-        
+        if not self.count_flags: raise AttributeError('No attruibte for count')
+
         some_ints = [self._read_packed_int(count_flag) for count_flag in self.count_flags]
         assert all(element == some_ints[0] for element in some_ints)
         return some_ints[0]
     @count.setter
     def count(self, value: int):
-        if not self.count_flags: raise AttributeError()
+        if not self.count_flags: raise AttributeError('No attruibte for count')
         
         for count_flag in self.count_flags:
             self._write_packed_int(count_flag,value)
 
-class _UseItemsInventory:    
+class _UseItemsInventory:
+    _has_been_initialised = False
+    def __setattr__(self, name: str, value: Any) -> None:
+        if not hasattr(self,name) and self._has_been_initialised:
+            raise AttributeError(f"Attribute '{name}' does not exist")
+        else:
+            super().__setattr__(name, value)
+
     def __str__(self) -> str:
         use_items_inventory = []
         if self._read_packed_int(so.HAS_FIREBALL):
@@ -230,9 +243,17 @@ class _UseItemsInventory:
         self.crush_puff = _InventoryItem(self2, (so.HAS_CRUSH_PUFF,))
         self.mega_puff = _InventoryItem(self2, (so.HAS_MEGA_PUFF,))
         self.the_map = _InventoryItem(self2, (so.HAS_MAP,))
-
         
-class _KeyItemsInventory: 
+        self._has_been_initialised = True
+        
+class _KeyItemsInventory:
+    _has_been_initialised = False
+    def __setattr__(self, name: str, value: Any) -> None:
+        if not hasattr(self,name) and self._has_been_initialised:
+            raise AttributeError(f"Attribute '{name}' does not exist")
+        else:
+            super().__setattr__(name, value)
+
     def __str__(self):
         key_items_list = []
 
@@ -329,7 +350,17 @@ class _KeyItemsInventory:
         self.top_half_of_skull = _InventoryItem(self2, (so.HAS_TOP_HALF_SKULL,))
         self.bottom_half_of_skull = _InventoryItem(self2, (so.HAS_BOTTOM_HALF_SKULL,))
 
+        self._has_been_initialised = True
+
+
 class _File():
+    _has_been_initialised = False
+    def __setattr__(self, name: str, value: Any) -> None:
+        if not hasattr(self,name) and self._has_been_initialised:
+            raise AttributeError(f"Attribute '{name}' does not exist")
+        else:
+            super().__setattr__(name, value)
+
     def _read_int_data(self, the_structure: so.StructuredData) -> int:
     
         new_offset = (so.MAINSAVEOFFSET + the_structure.struct_offset) + (the_structure.struct_length * (self._savenumber-1)) + the_structure.data_offset
@@ -371,6 +402,9 @@ class _File():
 
         self.key_items_inventory = _KeyItemsInventory(self)
         self.use_items_inventory = _UseItemsInventory(self)
+
+        self._has_been_initialised = True
+
     @property
     def gems(self) -> int:
         return self._read_packed_int(so.GEMS)
@@ -557,6 +591,13 @@ class InvalidRiskyRevengeSavePS4(Exception): pass
 class InvalidRiskyRevengeHashPS4(InvalidRiskyRevengeSavePS4): pass
 
 class SRiskyRevengePS4V2Loader:
+    _has_been_initialised = False
+    def __setattr__(self, name: str, value: Any) -> None:
+        if not hasattr(self,name) and self._has_been_initialised:
+            raise AttributeError(f"Attribute '{name}' does not exist")
+        else:
+            super().__setattr__(name, value)
+
     def __init__(self, savedata_sav_bytes: bytes,/,*,hash_check: bool = False):
         if len(savedata_sav_bytes) != 2048:
             raise InvalidRiskyRevengeSavePS4('Savedata is not exactly 2048 bytes, so its not a save')
@@ -573,6 +614,8 @@ class SRiskyRevengePS4V2Loader:
         self.File_A = _File(self,1)
         self.File_B = _File(self,2)
         self.File_C = _File(self,3)
+
+        self._has_been_initialised = True
 
     def export_save(self):
         if self.hash_check:
@@ -599,7 +642,7 @@ FINAL_CUTSCENE = CoordsLayerAndArea(3342336, 18677759, 215, 1)
 
 def main():
     save = SRiskyRevengePS4V2Loader(open('savedata.sav','rb').read())
-    save.File_A.use_items_inventory.mega_pike_ball = 4
+    save.File_A.use_items_inventory.mega_pike_balll = 4
 
 
 
