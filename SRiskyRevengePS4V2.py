@@ -631,13 +631,14 @@ class SRiskyRevengePS4V2Loader:
         return f'{type(self).__name__}({self._savedata.getvalue()}, hash_check = {self.hash_check})'
 
 
-FIRST_BOSS = CoordsLayerAndArea(2367487, 2949119, 213, 0)
-FINAL_CHECKPOINT = CoordsLayerAndArea(21381120, 18415615, 188, 2)
-RISKY_SHIP_PRE_FINAL_BOSS = CoordsLayerAndArea(1867776, 3145727, 190, 0)
-FINAL_BOSS = CoordsLayerAndArea(2277376, 2031615, 191, 0)
+TP_2_FIRST_BOSS = CoordsLayerAndArea(2367487, 2949119, 213, 0)
+TP_2_CHEF_HOUSE = CoordsLayerAndArea(1138688, 2031615, 208, 0)
+TP_2_FINAL_CHECKPOINT = CoordsLayerAndArea(21381120, 18415615, 188, 2)
+TP_2_RISKY_SHIP_PRE_FINAL_BOSS = CoordsLayerAndArea(1867776, 3145727, 190, 0)
+TP_2_FINAL_BOSS = CoordsLayerAndArea(2277376, 2031615, 191, 0)
 
-FINAL_BOSS_BEATEN = CoordsLayerAndArea(1474560, 3145727, 192, 0)
-FINAL_CUTSCENE = CoordsLayerAndArea(3342336, 18677759, 215, 1)
+TP_2_FINAL_BOSS_BEATEN = CoordsLayerAndArea(1474560, 3145727, 192, 0)
+TP_2_FINAL_CUTSCENE = CoordsLayerAndArea(3342336, 18677759, 215, 1)
 
 
 def main():
